@@ -1,0 +1,21 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-chaos-delay
+  namespace: chaos-testing
+spec:
+  action: delay
+  mode: fixed
+  value: "4"
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      "app.kubernetes.io/component": "tikv"
+  delay:
+    latency: "500ms"
+    correlation: "25"
+    jitter: "200ms"
+  duration: "2s"
+  scheduler:
+    cron: "@every 5s"

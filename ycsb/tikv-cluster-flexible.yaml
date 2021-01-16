@@ -1,0 +1,26 @@
+apiVersion: tikv.org/v1alpha1
+kind: TikvCluster
+metadata:
+  name: test-cluster
+spec:
+  version: v4.0.0
+  pd:
+    baseImage: pingcap/pd
+    replicas: 1
+    requests:
+      storage: "1Gi"
+    config:
+      replication:
+        max-replicas: 7
+  tikv:
+    image: akashsharma/tikv:flexible_raft
+    replicas: 7
+    requests:
+      storage: "2Gi"
+    config:
+      storage:
+        reserve-space: "0MB"
+      rocksdb:
+        max-open-files: 256
+      raftdb:
+        max-open-files: 256

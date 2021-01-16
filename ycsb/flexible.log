@@ -1,0 +1,100 @@
+root@ubuntu:~/go/src/github.com/pingcap/go-ycsb# ./bin/go-ycsb load tikv \
+>     -P $GOPATH/src/github.com/pingcap/go-ycsb/workloads/workloadf \
+>     -p tikv.pd="baseline-cluster-pd:2379" -p tikv.type="raw" \
+>     -p tikv.conncount=64 -p tikv.batchsize=64 \
+>     -p operationcount=100000 -p recordcount=100000 \
+>     -p threadcount=100
+INFO[0000] [pd] create pd client with endpoints [baseline-cluster-pd:2379]
+INFO[0000] [pd] leader switches to: http://baseline-cluster-pd-0.baseline-cluster-pd-peer.default.svc:2379, previous:
+INFO[0000] [pd] init cluster id 6918082492883152258
+***************** properties *****************
+"tikv.type"="raw"
+"workload"="core"
+"insertproportion"="0"
+"tikv.conncount"="64"
+"dotransactions"="false"
+"readallfields"="true"
+"requestdistribution"="uniform"
+"updateproportion"="0"
+"recordcount"="100000"
+"scanproportion"="0"
+"threadcount"="100"
+"operationcount"="100000"
+"readmodifywriteproportion"="0.5"
+"tikv.pd"="baseline-cluster-pd:2379"
+"tikv.batchsize"="64"
+"readproportion"="0.5"
+**********************************************
+INSERT - Takes(s): 7.5, Count: 12781, OPS: 1708.5, Avg(us): 75199, Min(us): 12982, Max(us): 2581113, 99th(us): 2478000, 99.9th(us): 2547000, 99.99th(us): 2580000
+INSERT - Takes(s): 17.5, Count: 29951, OPS: 1713.4, Avg(us): 65489, Min(us): 12044, Max(us): 2581113, 99th(us): 1284000, 99.9th(us): 2544000, 99.99th(us): 2577000
+INSERT - Takes(s): 27.5, Count: 44184, OPS: 1607.8, Avg(us): 67609, Min(us): 10838, Max(us): 2581113, 99th(us): 1415000, 99.9th(us): 2542000, 99.99th(us): 2572000
+INSERT - Takes(s): 37.5, Count: 61988, OPS: 1653.9, Avg(us): 64093, Min(us): 10252, Max(us): 2581113, 99th(us): 1289000, 99.9th(us): 2535000, 99.99th(us): 2564000
+INSERT - Takes(s): 47.5, Count: 77925, OPS: 1641.2, Avg(us): 63483, Min(us): 10252, Max(us): 2581113, 99th(us): 1205000, 99.9th(us): 2533000, 99.99th(us): 2560000
+INSERT - Takes(s): 57.5, Count: 94254, OPS: 1639.7, Avg(us): 62875, Min(us): 9926, Max(us): 2581113, 99th(us): 1087000, 99.9th(us): 2531000, 99.99th(us): 2558000
+Run finished, takes 1m6.996192067s
+INSERT - Takes(s): 64.5, Count: 100000, OPS: 1551.0, Avg(us): 65211, Min(us): 8758, Max(us): 2581113, 99th(us): 1127000, 99.9th(us): 2531000, 99.99th(us): 2557000
+
+root@ubuntu:~/go/src/github.com/pingcap/go-ycsb# ./bin/go-ycsb run tikv \
+>     -P $GOPATH/src/github.com/pingcap/go-ycsb/workloads/workloadf \
+>     -p tikv.pd="baseline-cluster-pd:2379" -p tikv.type="raw" \
+>     -p operationcount=100000 -p recordcount=100000 \
+>     -p threadcount=100
+INFO[0000] [pd] create pd client with endpoints [baseline-cluster-pd:2379]
+INFO[0000] [pd] leader switches to: http://baseline-cluster-pd-0.baseline-cluster-pd-peer.default.svc:2379, previous:
+INFO[0000] [pd] init cluster id 6918082492883152258
+***************** properties *****************
+"readproportion"="0.5"
+"threadcount"="100"
+"insertproportion"="0"
+"dotransactions"="true"
+"requestdistribution"="uniform"
+"operationcount"="100000"
+"workload"="core"
+"tikv.pd"="baseline-cluster-pd:2379"
+"readallfields"="true"
+"tikv.type"="raw"
+"updateproportion"="0"
+"scanproportion"="0"
+"recordcount"="100000"
+"readmodifywriteproportion"="0.5"
+**********************************************
+READ   - Takes(s): 9.5, Count: 19767, OPS: 2088.2, Avg(us): 11941, Min(us): 170, Max(us): 856993, 99th(us): 478000, 99.9th(us): 672000, 99.99th(us): 752000
+READ_MODIFY_WRITE - Takes(s): 9.1, Count: 9636, OPS: 1054.8, Avg(us): 88649, Min(us): 12670, Max(us): 3366479, 99th(us): 1703000, 99.9th(us): 2875000, 99.99th(us): 3367000
+UPDATE - Takes(s): 9.1, Count: 9636, OPS: 1054.8, Avg(us): 76700, Min(us): 11985, Max(us): 2705448, 99th(us): 1285000, 99.9th(us): 2332000, 99.99th(us): 2706000
+READ   - Takes(s): 19.5, Count: 40038, OPS: 2056.8, Avg(us): 8016, Min(us): 163, Max(us): 856993, 99th(us): 29000, 99.9th(us): 612000, 99.99th(us): 724000
+READ_MODIFY_WRITE - Takes(s): 19.1, Count: 19834, OPS: 1036.5, Avg(us): 91200, Min(us): 12670, Max(us): 3366479, 99th(us): 1195000, 99.9th(us): 2708000, 99.99th(us): 3367000
+UPDATE - Takes(s): 19.1, Count: 19834, OPS: 1036.5, Avg(us): 83246, Min(us): 11985, Max(us): 2705448, 99th(us): 1165000, 99.9th(us): 2204000, 99.99th(us): 2675000
+READ   - Takes(s): 29.5, Count: 57382, OPS: 1947.4, Avg(us): 8522, Min(us): 159, Max(us): 871889, 99th(us): 31000, 99.9th(us): 633000, 99.99th(us): 724000
+READ_MODIFY_WRITE - Takes(s): 29.1, Count: 28637, OPS: 982.9, Avg(us): 95199, Min(us): 12670, Max(us): 3366479, 99th(us): 1186000, 99.9th(us): 2399000, 99.99th(us): 3019000
+UPDATE - Takes(s): 29.1, Count: 28637, OPS: 982.9, Avg(us): 86628, Min(us): 11985, Max(us): 2705448, 99th(us): 1154000, 99.9th(us): 1996000, 99.99th(us): 2532000
+READ   - Takes(s): 39.5, Count: 75565, OPS: 1914.7, Avg(us): 7509, Min(us): 159, Max(us): 871889, 99th(us): 26000, 99.9th(us): 611000, 99.99th(us): 724000
+READ_MODIFY_WRITE - Takes(s): 39.1, Count: 37781, OPS: 965.4, Avg(us): 97604, Min(us): 12670, Max(us): 3366479, 99th(us): 1040000, 99.9th(us): 2332000, 99.99th(us): 2934000
+UPDATE - Takes(s): 39.1, Count: 37781, OPS: 965.4, Avg(us): 90081, Min(us): 11505, Max(us): 2705448, 99th(us): 1026000, 99.9th(us): 1810000, 99.99th(us): 2477000
+READ   - Takes(s): 49.5, Count: 91023, OPS: 1840.1, Avg(us): 8896, Min(us): 159, Max(us): 1456192, 99th(us): 32000, 99.9th(us): 650000, 99.99th(us): 782000
+READ_MODIFY_WRITE - Takes(s): 49.1, Count: 45559, OPS: 927.2, Avg(us): 100243, Min(us): 12670, Max(us): 3366479, 99th(us): 1283000, 99.9th(us): 2644000, 99.99th(us): 3019000
+UPDATE - Takes(s): 49.1, Count: 45559, OPS: 927.2, Avg(us): 91407, Min(us): 11505, Max(us): 2705448, 99th(us): 1160000, 99.9th(us): 2136000, 99.99th(us): 2539000
+Run finished, takes 56.917589649s
+READ   - Takes(s): 56.4, Count: 99999, OPS: 1773.5, Avg(us): 8449, Min(us): 159, Max(us): 1456192, 99th(us): 30000, 99.9th(us): 643000, 99.99th(us): 782000
+READ_MODIFY_WRITE - Takes(s): 56.1, Count: 50202, OPS: 895.6, Avg(us): 99325, Min(us): 6834, Max(us): 3366479, 99th(us): 1187000, 99.9th(us): 2473000, 99.99th(us): 2976000
+UPDATE - Takes(s): 56.1, Count: 50202, OPS: 895.6, Avg(us): 90944, Min(us): 6439, Max(us): 2705448, 99th(us): 1109000, 99.9th(us): 2036000, 99.99th(us): 2532000
+
+**********************************************
+READ   - Takes(s): 9.4, Count: 14325, OPS: 1516.9, Avg(us): 13524, Min(us): 166, Max(us): 862980, 99th(us): 549000, 99.9th(us): 635000, 99.99th(us): 700000
+READ_MODIFY_WRITE - Takes(s): 9.4, Count: 7019, OPS: 745.7, Avg(us): 127937, Min(us): 15518, Max(us): 2061140, 99th(us): 1353000, 99.9th(us): 2046000, 99.99th(us): 2062000
+UPDATE - Takes(s): 9.4, Count: 7019, OPS: 745.6, Avg(us): 114698, Min(us): 13692, Max(us): 2059695, 99th(us): 1147000, 99.9th(us): 2041000, 99.99th(us): 2060000
+READ   - Takes(s): 19.4, Count: 34874, OPS: 1793.6, Avg(us): 10203, Min(us): 166, Max(us): 1546612, 99th(us): 343000, 99.9th(us): 640000, 99.99th(us): 766000
+READ_MODIFY_WRITE - Takes(s): 19.4, Count: 17334, OPS: 892.9, Avg(us): 104081, Min(us): 11630, Max(us): 2061140, 99th(us): 1135000, 99.9th(us): 2010000, 99.99th(us): 2061000
+UPDATE - Takes(s): 19.4, Count: 17334, OPS: 892.9, Avg(us): 94155, Min(us): 11103, Max(us): 2059695, 99th(us): 1055000, 99.9th(us): 1986000, 99.99th(us): 2060000
+READ   - Takes(s): 29.4, Count: 56155, OPS: 1907.1, Avg(us): 7956, Min(us): 166, Max(us): 1546612, 99th(us): 29000, 99.9th(us): 610000, 99.99th(us): 690000
+READ_MODIFY_WRITE - Takes(s): 29.4, Count: 28071, OPS: 954.3, Avg(us): 98622, Min(us): 11630, Max(us): 2061140, 99th(us): 1004000, 99.9th(us): 1896000, 99.99th(us): 2055000
+UPDATE - Takes(s): 29.4, Count: 28071, OPS: 954.3, Avg(us): 90862, Min(us): 11103, Max(us): 2059695, 99th(us): 925000, 99.9th(us): 1818000, 99.99th(us): 2049000
+READ   - Takes(s): 39.4, Count: 77203, OPS: 1957.3, Avg(us): 6991, Min(us): 164, Max(us): 1546612, 99th(us): 26000, 99.9th(us): 574000, 99.99th(us): 690000
+READ_MODIFY_WRITE - Takes(s): 39.4, Count: 38637, OPS: 980.3, Avg(us): 96336, Min(us): 11630, Max(us): 2061140, 99th(us): 907000, 99.9th(us): 1755000, 99.99th(us): 2050000
+UPDATE - Takes(s): 39.4, Count: 38637, OPS: 980.3, Avg(us): 89480, Min(us): 11103, Max(us): 2059695, 99th(us): 875000, 99.9th(us): 1700000, 99.99th(us): 2044000
+READ   - Takes(s): 49.4, Count: 97077, OPS: 1963.4, Avg(us): 6396, Min(us): 164, Max(us): 1546612, 99th(us): 24000, 99.9th(us): 563000, 99.99th(us): 690000
+READ_MODIFY_WRITE - Takes(s): 49.4, Count: 48599, OPS: 983.5, Avg(us): 94204, Min(us): 11630, Max(us): 2061140, 99th(us): 914000, 99.9th(us): 1676000, 99.99th(us): 2048000
+UPDATE - Takes(s): 49.4, Count: 48599, OPS: 983.5, Avg(us): 87914, Min(us): 11103, Max(us): 2059695, 99th(us): 902000, 99.9th(us): 1630000, 99.99th(us): 2043000
+Run finished, takes 51.459433561s
+READ   - Takes(s): 50.9, Count: 100000, OPS: 1964.5, Avg(us): 6285, Min(us): 164, Max(us): 1546612, 99th(us): 23000, 99.9th(us): 562000, 99.99th(us): 688000
+READ_MODIFY_WRITE - Takes(s): 50.9, Count: 50165, OPS: 986.1, Avg(us): 94144, Min(us): 8796, Max(us): 2061140, 99th(us): 940000, 99.9th(us): 1675000, 99.99th(us): 2047000
+UPDATE - Takes(s): 50.9, Count: 50165, OPS: 986.1, Avg(us): 87971, Min(us): 7471, Max(us): 2059695, 99th(us): 912000, 99.9th(us): 1622000, 99.99th(us): 2043000
